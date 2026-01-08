@@ -1,7 +1,7 @@
 :root {
   --bg: #f0eee9;
   --text: #1a1a1a;
-  --accent: #f4e04d;
+  --accent: #0892d0;
   --surface: #ffffff;
   --glass: rgba(0, 0, 0, 0.05);
   --glass-border: rgba(0, 0, 0, 0.01);
@@ -37,6 +37,10 @@ body {
   color: var(--accent);
 }
 
+.muted {
+  color: #666666;
+}
+
 .navbar {
   position: fixed;
   top: 0;
@@ -69,7 +73,6 @@ body {
 
 .nerd-btn:hover {
   background: var(--accent);
-  color: var(--text);
   transform: scale(1.03);
   font-weight: 700;
 }
@@ -83,7 +86,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 80px 5% 0 5%;
   text-align: center;
 }
 
@@ -94,7 +96,38 @@ body {
   letter-spacing: -0.05em;
 }
 
-.hero-subline {
+.hero-subline,
+.status-line {
   font-size: 1.25rem;
   margin-top: 1.5rem;
+}
+
+.status-line {
+  margin: 0;
+}
+
+.track-section {
+  padding: 40px 5%;
+}
+
+.track-section h3 {
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.track {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding: 20px 10px;
+  scroll-snap-type: mandatory;
+}
+
+.card {
+  min-width: 300px;
+  padding: 2rem;
+  border-radius: 12px;
+  scroll-snap-align: start;
+  transition: all 0.2s;
 }
