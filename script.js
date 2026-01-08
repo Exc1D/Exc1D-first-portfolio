@@ -1,11 +1,10 @@
-async function loadProjects(projects) {
+async function loadProjects() {
   try {
     const response = await fetch("projects.json");
-    const data = await response.json();
-    renderProjects(data);
+    const projects = await response.json();
+    renderProjects(projects);
   } catch (error) {
     console.error("Error loading projects:", error);
-    return [];
   }
 }
 
@@ -76,3 +75,30 @@ function renderProjects(projects) {
 }
 
 loadProjects();
+
+async function getGithubStats() {
+  const statusDiv = document.getElementById("githubStatus");
+  const username = "Exc1D";
+
+  try {
+    const response = await fetch(
+      `https://api.github.com/users/${username}/events/public`
+    );
+    const data = await response.json();
+
+    // Find the first "PushEvent"
+    const lastPush = data.find((event) => event.type === "PushEvent");
+    if (lastPush) {
+      const repoName = lastPush.repo.name.split("/")[1]; // Remove username from repo
+      const message = lastPush.payload.commits[0].message;
+
+      statusDiv.innerHTML = `LATEST_COMMIT: [${repoName}] ${message}`;
+    } else {
+      statusDiv.innerHTML = "LATEST_COMMIT: No recent pushes found";
+    }
+  } catch (error) {
+    statusDiv.innerHTML = "SYSTEM_OFFLINE: Github unreachable";
+  }
+}
+
+getGithubStats();
