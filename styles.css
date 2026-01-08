@@ -23,6 +23,14 @@ body {
   min-height: 100vh;
 }
 
+body.debug {
+  border: 5px solid var(--accent);
+}
+
+body.debug * {
+  outline: 1px solid rgba(5, 110, 159, 0.814);
+}
+
 .glass {
   background: var(--glass);
   backdrop-filter: blur(12px);
