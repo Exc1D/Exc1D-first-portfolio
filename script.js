@@ -25,7 +25,7 @@ function renderProjects(projects) {
     if (tracks[cat]) {
       tracks[cat].push(project);
     } else {
-      console.warn("Unknown track:", track, "for project", project);
+      console.warn("Unknown track:", cat, "for project", project);
     }
   });
 
@@ -42,14 +42,27 @@ function renderProjects(projects) {
           .map(
             (project) => `
             <div class="card">
-              <img class="card-image" src="${project.image}" alt="A screenshot of ${project.title}">
+              <img class="card-image" src="${
+                project.image
+              }" alt="A screenshot of ${project.title}">
               <div class="card-content">
                 <h4 class="card-title">${project.title}</h4>
                 <p class="card-desc">${project.description}</p>
-                <p class="card-tech">${project.tech}</p>
+                <div class="tech-stack" style="margin-top: auto;">
+                    ${project.tech
+                      .map(
+                        (tech) =>
+                          `<span class="tech-tag" style="font-size: 0.75rem; padding: 4px 8px;">${tech}</span>`
+                      )
+                      .join("")}
+                </div>
                 <div class="card-actions">
-                  <a href="${project.demo}" target="_blank" class="card-btn">DEMO</a>
-                  <a href="${project.github}" target="_blank" class="card-btn">CODE</a>
+                  <a href="${
+                    project.demo
+                  }" target="_blank" class="primary-card-btn">DEMO</a>
+                  <a href="${
+                    project.github
+                  }" target="_blank" class="card-btn">CODE</a>
                 </div>
               </div>
             </div>`
