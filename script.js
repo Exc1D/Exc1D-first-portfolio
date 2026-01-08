@@ -86,17 +86,28 @@ async function getGithubStats() {
     );
     const data = await response.json();
 
+    console.log("Github Data Received:", data);
+
     // Find the first "PushEvent"
     const lastPush = data.find((event) => event.type === "PushEvent");
-    if (lastPush) {
-      const repoName = lastPush.repo.name.split("/")[1]; // Remove username from repo
-      const message = lastPush.payload.commits[0].message;
 
-      statusDiv.innerHTML = `LATEST_COMMIT: [${repoName}] ${message}`;
+    if (lastPush) {
+      const { repo, payload } = lastPush;
+      const repoName = repo.name.split("/")[1];
+
+      // Check if commits array exists and has items
+      if (payload.commits && payload.commits.length > 0) {
+        const { message } = payload.commits[0];
+        statusDiv.innerHTML = `LATEST_COMMIT: [${repoName}] ${message}`;
+      } else {
+        // Fallback if commits array is empty or undefined
+        statusDiv.innerHTML = `LATEST_COMMIT: [${repoName}] Push detected (no commit message)`;
+      }
     } else {
       statusDiv.innerHTML = "LATEST_COMMIT: No recent pushes found";
     }
   } catch (error) {
+    console.error("CRITICAL ERROR:", error);
     statusDiv.innerHTML = "SYSTEM_OFFLINE: Github unreachable";
   }
 }
