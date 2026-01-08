@@ -106,28 +106,115 @@ body {
   margin: 0;
 }
 
+/* --- TRACK LAYOUT --- */
 .track-section {
   padding: 40px 5%;
 }
 
 .track-section h3 {
   font-weight: 800;
+  font-size: 1.5rem;
   text-transform: uppercase;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
 }
 
 .track {
   display: flex;
   gap: 20px;
   overflow-x: auto;
-  padding: 20px 10px;
-  scroll-snap-type: mandatory;
+  padding-bottom: 20px;
+  scroll-snap-type: x mandatory;
+  /* Hide scrollbar for cleaner look (optional) */
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) transparent;
 }
 
+/* --- THE CARD ENGINE --- */
 .card {
-  min-width: 300px;
-  padding: 2rem;
+  position: relative; /* Anchor for absolute children */
+  min-width: 320px; /* Fixed width for scrolling */
+  height: 400px; /* Fixed height ensures uniform look */
   border-radius: 12px;
+  overflow: hidden; /* Cuts off anything sticking out */
   scroll-snap-align: start;
-  transition: all 0.2s;
+  background: var(--surface);
+  border: 1px solid var(--glass-border);
+}
+
+/* 1. The Image Layer */
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* 2. The Content Layer (Hidden Overlay) */
+.card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.95); /* Semi-transparent background */
+  transform: translateY(
+    60%
+  ); /* Push it down so only title shows (tweak this!) */
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy slide */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card-title {
+  font-weight: 800;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+}
+
+.card-desc {
+  font-size: 0.9rem;
+  color: #555;
+  line-height: 1.5; /* Good whitespace for reading */
+  opacity: 0; /* Hidden by default */
+  transition: opacity 0.3s 0.1s; /* Slight delay */
+}
+
+/* --- HOVER ACTIONS --- */
+.card:hover .card-image {
+  opacity: 0.3; /* Fade out image */
+  transform: scale(1.05); /* Slight zoom */
+}
+
+.card:hover .card-content {
+  transform: translateY(0); /* Slide fully up */
+}
+
+.card:hover .card-desc {
+  opacity: 1; /* Fade in text */
+}
+
+/* Button Group */
+.card-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.card-btn {
+  flex: 1;
+  padding: 0.8rem;
+  background: var(--text);
+  color: var(--bg);
+  text-align: center;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.8rem;
+  border-radius: 6px;
+}
+
+.card-btn:hover {
+  background: var(--accent);
+  color: var(--text);
 }
