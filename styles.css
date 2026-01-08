@@ -1,6 +1,7 @@
 :root {
   --bg: #f0eee9;
   --text: #1a1a1a;
+  --muted: #666;
   --accent: #0892d0;
   --surface: #ffffff;
   --glass: rgba(0, 0, 0, 0.05);
@@ -38,7 +39,7 @@ body {
 }
 
 .muted {
-  color: #666666;
+  color: var(--muted);
 }
 
 .navbar {
@@ -231,6 +232,8 @@ body {
   gap: 4rem;
 }
 
+/* --- TECH STACK --- */
+
 .tech-stack {
   display: flex;
   flex-wrap: wrap;
@@ -251,4 +254,56 @@ body {
   border-color: var(--accent);
   color: var(--accent);
   transform: translate(-2px);
+}
+
+/* --- FOOTER --- */
+
+footer {
+  padding: 3rem 5%;
+  text-align: center;
+  border-top: 1px solid var(--glass-border);
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.footer-links {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.footer-links a {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.footer-links a:hover {
+  color: var(--accent);
+}
+
+/* --- HIDDEN NOTIFICATION --- */
+.notification {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: var(--text);
+  color: var(--bg);
+  padding: 1em 1.5em;
+  border-radius: 0.5rem;
+  font-weight: 700;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  z-index: 999;
+
+  /* Hidden State */
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.notification.show {
+  opacity: 1;
+  transform: translateY(0);
 }
