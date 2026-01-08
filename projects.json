@@ -1,0 +1,110 @@
+[
+  {
+    "title": "Awesome Grade Calculator",
+    "category": "personal",
+    "description": "A gamified project evaluation system with MOBA-style ranking progression.",
+    "tech": ["HTML", "CSS", "JS"],
+    "image": "assets/awesome-grade-calculator.png",
+    "github": "https://github.com/Exc1D/day-04-epic-grade-calculator",
+    "demo": "https://exc1d.github.io/awesome-grade-calculator/"
+  },
+  {
+    "title": "PX-to-REM Converter",
+    "category": "personal",
+    "description": "A polished interactive converter with batch processing.",
+    "tech": ["HTML", "CSS", "JS"],
+    "image": "https://i.imgur.com/u6tQ9AJ.png",
+    "github": "https://github.com/Exc1D/px-to-rem",
+    "demo": "https://exc1d.github.io/px-to-rem/"
+  },
+  {
+    "title": "EXXEED | The Mission Log",
+    "category": "personal",
+    "description": "Serverless blogging platform built on Cloudflare Workers.",
+    "tech": ["Cloudflare", "KV", "JS"],
+    "image": "assets/exxeed-blog.png",
+    "github": "https://github.com/Exc1D/exxeed-blog",
+    "demo": "https://iexceed.xyz/"
+  },
+  {
+    "title": "Etch-a-Sketch",
+    "category": "odin",
+    "description": "Interactive sketch pad with a great personality.",
+    "tech": ["HTML", "CSS", "JS"],
+    "image": "assets/etch-a-sketch.png",
+    "github": "https://github.com/Exc1D/odin-etch-a-sketch",
+    "demo": "https://exc1d.github.io/odin-etch-a-sketch/"
+  },
+  {
+    "title": "Almost Boring Calculator",
+    "category": "odin",
+    "description": "Fully functional web calculator. Simple but beautiful.",
+    "tech": ["HTML", "CSS", "JS"],
+    "image": "assets/calculator.png",
+    "github": "https://github.com/Exc1D/odin-calculator",
+    "demo": "https://exc1d.github.io/odin-calculator/"
+  },
+  {
+    "title": "Kawaii Rock Paper Scissors",
+    "category": "odin",
+    "description": "Web-based mini-game with dynamic scoring and intuitive sound fx.",
+    "tech": ["HTML", "CSS", "JS"],
+    "image": "assets/kawaii-rps.png",
+    "github": "https://github.com/Exc1D/odin-kawaii-rps",
+    "demo": "https://exc1d.github.io/odin-kawaii-rps/"
+  },
+  {
+    "title": "Oldagram",
+    "category": "scrimba",
+    "description": "Instagram clone with dynamic feed rendering.",
+    "tech": ["HTML", "CSS", "JS"],
+    "image": "assets/oldagram.png",
+    "github": "https://github.com/Exc1D/scrimba-oldagram",
+    "demo": "https://exc1d.github.io/scrimba-oldagram/"
+  },
+  {
+    "title": "Random Passwordinator",
+    "category": "scrimba",
+    "description": "Dr. Doofenshmirtz-inspired password generator.",
+    "tech": ["HTML", "CSS", "JS"],
+    "image": "assets/passwordinator.png",
+    "github": "https://github.com/Exc1D/Passwordinator",
+    "demo": "https://exc1d.github.io/Passwordinator/"
+  },
+  {
+    "title": "Unit Converter",
+    "category": "scrimba",
+    "description": "Simple web-based converter for length, volume, and mass.",
+    "tech": ["HTML", "CSS", "JS"],
+    "image": "assets/unit-converter.png",
+    "github": "https://github.com/Exc1D/Unit-Converter-Solo-project-from-Scrimba-",
+    "demo": "https://exc1d.github.io/Unit-Converter-Solo-project-from-Scrimba-/"
+  },
+  {
+    "title": "Product Preview Page",
+    "category": "frontend-mentor",
+    "description": "First take on responsive CSS design featuring a clean layout.",
+    "tech": ["HTML", "CSS"],
+    "image": "assets/product-preview.png",
+    "github": "https://github.com/Exc1D/product-preview",
+    "demo": "https://exc1d.github.io/product-preview/"
+  },
+  {
+    "title": "Age Calculator",
+    "category": "frontend-mentor",
+    "description": "Elegant age calculator with fun animations.",
+    "tech": ["HTML", "CSS", "JS"],
+    "image": "assets/age-calculator.png",
+    "github": "https://github.com/Exc1D/day-03-age-calculator",
+    "demo": "https://exc1d.github.io/day-03-age-calculator/"
+  },
+  {
+    "title": "Blog Card",
+    "category": "frontend-mentor",
+    "description": "Copied a beatuiful template from scratch.",
+    "tech": ["HTML", "CSS"],
+    "image": "assets/blog-card.png",
+    "github": "https://github.com/Exc1D/blog-card",
+    "demo": "https://exc1d.github.io/blog-card/"
+  }
+]
