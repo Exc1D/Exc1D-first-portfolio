@@ -4,7 +4,7 @@
     "category": "personal",
     "description": "A gamified project evaluation system with MOBA-style ranking progression.",
     "tech": ["HTML", "CSS", "JS"],
-    "image": "assets/awesome-grade-calculator.png",
+    "image": "assets/awesome-grade.png",
     "github": "https://github.com/Exc1D/day-04-epic-grade-calculator",
     "demo": "https://exc1d.github.io/awesome-grade-calculator/"
   },
@@ -13,7 +13,7 @@
     "category": "personal",
     "description": "A polished interactive converter with batch processing.",
     "tech": ["HTML", "CSS", "JS"],
-    "image": "https://i.imgur.com/u6tQ9AJ.png",
+    "image": "assets/px-to-rem.png",
     "github": "https://github.com/Exc1D/px-to-rem",
     "demo": "https://exc1d.github.io/px-to-rem/"
   },
