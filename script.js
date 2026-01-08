@@ -113,3 +113,24 @@ async function getGithubStats() {
 }
 
 getGithubStats();
+
+function setupNerdMode() {
+  const body = document.body;
+  const nerdBtn = document.querySelector(".nerd-btn");
+  const isNerdMode = localStorage.getItem("nerdMode") === true;
+
+  if (isNerdMode) {
+    body.classList.add("debug");
+    nerdBtn.textContent = "NERD MODE: ON";
+  }
+
+  nerdBtn.addEventListener("click", () => {
+    body.classList.toggle("debug");
+
+    const isActive = body.classList.contains("debug");
+    localStorage.setItem("nerdMode", isActive);
+    nerdBtn.textContent = isActive ? "NERD MODE: ON" : "NERD MODE: OFF";
+  });
+}
+
+setupNerdMode();
