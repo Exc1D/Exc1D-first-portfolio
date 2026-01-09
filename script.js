@@ -88,7 +88,46 @@ function setupNerdMode() {
   });
 }
 
+async function fetchGithubStatus() {
+  const username = "Exc1D";
+  const statusElement = document.getElementById("githubStatus");
+
+  try {
+    // Fetch github events
+    const response = await fetch(
+      "https://api.github.com/users/Exc1D/events/public"
+    );
+
+    if (!response.ok) {
+      throw new Error("Github API Error");
+    }
+    // Parse json
+    const events = await response.json();
+
+    const recentPush = events.find((event) => event.type === "PushEvent");
+    // Step 5: Extract useful info
+    // - Repository name: event.repo.name
+    // - Commit message: event.payload.commits[0].message
+    // - Date: event.created_at
+    if (!recentPush) {
+      statusElement.textContent = `No recent pushes for ${username}`;
+      return;
+    }
+
+    const repoName = recentPush.repo?.name ?? "Unknown repo";
+    const commitMessage =
+      recentPush.payload?.commits?.[0].message ?? "No commit message";
+    const date = new Date(recentPush.created_at).toLocaleString();
+
+    statusElement.textContent = `Last push to ${repoName}: "${commitMessage}" on ${date}`;
+  } catch (error) {
+    statusElement.textContent = "Unable to load GitHub status";
+    console.error(error);
+  }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   loadProjects();
   setupNerdMode();
+  fetchGithubStatus();
 });
