@@ -6,7 +6,6 @@ async function loadProjects() {
       throw new Error(`Error fetching projects: ${response.statusText}`);
     }
     const projects = await response.json();
-    console.log(projects);
     renderProjects(projects);
   } catch (error) {
     console.error("Fetch error:", error.message);
@@ -28,7 +27,6 @@ function renderProjects(projects) {
     const filtered = projects.filter(
       (project) => project.category === category
     );
-    console.log(`Found ${filtered.length} projects for ${category}`);
     if (filtered.length > 0) {
       const cardsHTML = filtered
         .map(
@@ -78,7 +76,6 @@ function setupNerdMode() {
   if (!button) return; // safety: button not found
 
   button.addEventListener("click", () => {
-    console.log("Button was clicked");
     // Toggle the 'debug' class to apply visual changes
     document.body.classList.toggle("debug");
 
@@ -130,15 +127,43 @@ async function fetchGithubStatus() {
       return;
     }
 
-    // Build a small list of recent pushes
-    const itemsHtml = recentPushes
-      .map((event) => {
-        const repoName = event.repo?.name ?? "Unknown repo";
-        const commitMessage =
-          event.payload?.commits?.[0]?.message ?? "No commit message";
-        const relTime = timeAgo(event.created_at);
+    // NEW: Fetch commit details for each push so we get the real commit message
+    const pushesWithCommits = await Promise.all(
+      recentPushes.map(async (event) => {
+        const repoName = event.repo.name;
+        const commitSha = event.payload.head; // commit SHA from the event
 
-        return `<li>Push to <strong>${repoName}</strong>: "${commitMessage}" (${relTime})</li>`;
+        try {
+          const commitResponse = await fetch(
+            `https://api.github.com/repos/${repoName}/commits/${commitSha}`
+          );
+
+          if (commitResponse.ok) {
+            const commitData = await commitResponse.json();
+            return {
+              repoName,
+              message: commitData.commit.message,
+              date: event.created_at,
+            };
+          }
+        } catch (err) {
+          console.error("Failed to fetch commit:", err);
+        }
+
+        // Fallback if fetch fails
+        return {
+          repoName,
+          message: "No commit message available",
+          date: event.created_at,
+        };
+      })
+    );
+
+    // Build a small list of recent pushes with real commit messages
+    const itemsHtml = pushesWithCommits
+      .map((push) => {
+        const relTime = timeAgo(push.date);
+        return `<li>Push to <strong>${push.repoName}</strong>: "${push.message}" (${relTime})</li>`;
       })
       .join("");
 
