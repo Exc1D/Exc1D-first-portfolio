@@ -15,7 +15,12 @@ async function loadProjects() {
 
 function renderProjects(projects) {
   const app = document.getElementById("app");
-  const categories = ["personal", "odin", "scrimba", "frontend-mentor"];
+  const categories = [
+    "the-odin-project",
+    "scrimba",
+    "frontend-mentor",
+    "personal",
+  ];
 
   categories.forEach((category) => {
     const filtered = projects.filter(
@@ -64,4 +69,27 @@ function renderProjects(projects) {
     }
   });
 }
-document.addEventListener("DOMContentLoaded", loadProjects);
+
+function setupNerdMode() {
+  // Step 1: Get the button element
+  const button = document.querySelector(".nerd-btn");
+
+  if (!button) return; // safety: button not found
+
+  // Step 2: Add click event listener
+  button.addEventListener("click", () => {
+    console.log("Button was clicked");
+    // Step 3: Toggle the 'debug' class on body
+    document.body.classList.toggle("debug");
+
+    // Step 4 + 5: if debug is active, update button text accordingly (optional)
+    button.textContent = document.body.classList.contains("debug")
+      ? "NERD MODE: ON"
+      : "NERD MODE: OFF";
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  loadProjects();
+  setupNerdMode();
+});
