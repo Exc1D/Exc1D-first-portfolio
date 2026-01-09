@@ -23,12 +23,17 @@ body {
   min-height: 100vh;
 }
 
-body.debug {
-  border: 5px solid var(--accent);
+body.debug * {
+  outline: 1px solid var(--text);
 }
 
-body.debug * {
-  outline: 1px solid rgba(5, 110, 159, 0.814);
+body.debug .nerd-btn {
+  background: var(--accent);
+}
+
+body.debug .nerd-btn:hover {
+  background: var(--text);
+  border-color: var(--text);
 }
 
 .glass {
@@ -210,6 +215,29 @@ body.debug * {
   opacity: 1; /* Fade in text */
 }
 
+.card-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.tech-tag {
+  background: var(--bg);
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid var(--glass-border);
+  transition: all 0.2s;
+  padding: 4px 8px;
+}
+
+.tech-tag:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translate(-2px);
+}
+
 /* Button Group */
 .card-actions {
   display: flex;
@@ -250,30 +278,6 @@ body.debug * {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
-}
-
-/* --- TECH STACK --- */
-
-.tech-stack {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.tech-tag {
-  padding: 0.5rem 1rem;
-  background: var(--bg);
-  border-radius: 4px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  border: 1px solid var(--glass-border);
-  transition: all 0.2s;
-}
-
-.tech-tag:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-  transform: translate(-2px);
 }
 
 /* --- FOOTER --- */
