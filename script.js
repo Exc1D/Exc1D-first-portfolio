@@ -33,26 +33,27 @@ function renderProjects(projects) {
           <div class="card-content">
             <p class="card-title">${project.title}</p>
             <p class="card-desc">${project.description}</p>
-            <div class="card-tech" style="margin-top: auto;">
+            <div class="card-tech">
               ${project.tech
-                .map(
-                  (tech) =>
-                    `<span class="tech-tag" style="font-size: 0.75rem; padding: 4px 8px;">${tech}</span>`
-                )
+                .map((tech) => `<span class="tech-tag">${tech}</span>`)
                 .join("")}
             </div>
             <div class="card-actions">
-              <button class="primary-card-btn">DEMO</button>
-              <button class="card-btn">CODE</button>
+              <a href="${
+                project.demo
+              }" class="primary-card-btn" target="_blank">DEMO</a>
+              <a href="${
+                project.github
+              }" class="card-btn" target="_blank">CODE</a>
             </div>
           </div>
         </div>`
         )
-        .join();
+        .join("");
 
       const trackSection = `
       <section class="track-section">
-        <h3>${category.toUpperCase()}</h3>
+        <h3>${category.replaceAll("-", " ").toUpperCase()}</h3>
         <div class="track">
           ${cardsHTML}
         </div>
