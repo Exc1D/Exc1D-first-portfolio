@@ -90,7 +90,7 @@ async function fetchGithubStatus() {
   const statusElement = document.getElementById("githubStatus");
 
   // helper to turn an ISO date into "x minutes/hours/days ago"
-  function timeAgo(isoString) {
+  const timeAgo = (isoString) => {
     const now = new Date();
     const then = new Date(isoString);
     const diffMs = now - then;
@@ -103,7 +103,7 @@ async function fetchGithubStatus() {
     if (diffMin < 60) return `${diffMin} minute${diffMin === 1 ? "" : "s"} ago`;
     if (diffHrs < 24) return `${diffHrs} hour${diffHrs === 1 ? "" : "s"} ago`;
     return `${diffDays} day${diffDays === 1 ? "" : "s"} ago`;
-  }
+  };
 
   try {
     // Fetch github events
