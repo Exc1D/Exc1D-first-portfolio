@@ -15,6 +15,8 @@ async function loadProjects() {
 
 function renderProjects(projects) {
   const app = document.getElementById("app");
+
+  // Define categories for display and order
   const categories = [
     "the-odin-project",
     "scrimba",
@@ -71,21 +73,18 @@ function renderProjects(projects) {
 }
 
 function setupNerdMode() {
-  // Step 1: Get the button element
   const button = document.querySelector(".nerd-btn");
 
   if (!button) return; // safety: button not found
 
-  // Step 2: Add click event listener
   button.addEventListener("click", () => {
     console.log("Button was clicked");
-    // Step 3: Toggle the 'debug' class on body
+    // Toggle the 'debug' class to apply visual changes
     document.body.classList.toggle("debug");
 
-    // Step 4 + 5: if debug is active, update button text accordingly (optional)
-    button.textContent = document.body.classList.contains("debug")
-      ? "NERD MODE: ON"
-      : "NERD MODE: OFF";
+    // If debug is active, update button text accordingly
+    const isDebugActive = document.body.classList.contains("debug");
+    button.textContent = `NERD MODE: ${isDebugActive ? "ON" : "OFF"}`;
   });
 }
 
