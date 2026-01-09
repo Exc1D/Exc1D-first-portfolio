@@ -92,6 +92,22 @@ async function fetchGithubStatus() {
   const username = "Exc1D";
   const statusElement = document.getElementById("githubStatus");
 
+  // helper to turn an ISO date into "x minutes/hours/days ago"
+  function timeAgo(isoString) {
+    const now = new Date();
+    const then = new Date(isoString);
+    const diffMs = now - then;
+    const diffSec = Math.floor(diffMs / 1000);
+    const diffMin = Math.floor(diffSec / 60);
+    const diffHrs = Math.floor(diffMin / 60);
+    const diffDays = Math.floor(diffHrs / 24);
+
+    if (diffSec < 60) return "just now";
+    if (diffMin < 60) return `${diffMin} minute${diffMin === 1 ? "" : "s"} ago`;
+    if (diffHrs < 24) return `${diffHrs} hour${diffHrs === 1 ? "" : "s"} ago`;
+    return `${diffDays} day${diffDays === 1 ? "" : "s"} ago`;
+  }
+
   try {
     // Fetch github events
     const response = await fetch(
@@ -104,22 +120,34 @@ async function fetchGithubStatus() {
     // Parse json
     const events = await response.json();
 
-    const recentPush = events.find((event) => event.type === "PushEvent");
-    // Step 5: Extract useful info
-    // - Repository name: event.repo.name
-    // - Commit message: event.payload.commits[0].message
-    // - Date: event.created_at
-    if (!recentPush) {
+    // get multiple recent push events, e.g. top 3
+    const recentPushes = events
+      .filter((event) => event.type === "PushEvent")
+      .slice(0, 3);
+
+    if (recentPushes.length === 0) {
       statusElement.textContent = `No recent pushes for ${username}`;
       return;
     }
 
-    const repoName = recentPush.repo?.name ?? "Unknown repo";
-    const commitMessage =
-      recentPush.payload?.commits?.[0].message ?? "No commit message";
-    const date = new Date(recentPush.created_at).toLocaleString();
+    // Build a small list of recent pushes
+    const itemsHtml = recentPushes
+      .map((event) => {
+        const repoName = event.repo?.name ?? "Unknown repo";
+        const commitMessage =
+          event.payload?.commits?.[0]?.message ?? "No commit message";
+        const relTime = timeAgo(event.created_at);
 
-    statusElement.textContent = `Last push to ${repoName}: "${commitMessage}" on ${date}`;
+        return `<li>Push to <strong>${repoName}</strong>: "${commitMessage}" (${relTime})</li>`;
+      })
+      .join("");
+
+    statusElement.innerHTML = `
+      <p>Recent GitHub activity:</p>
+      <ul>
+        ${itemsHtml}
+      </ul>
+    `;
   } catch (error) {
     statusElement.textContent = "Unable to load GitHub status";
     console.error(error);
