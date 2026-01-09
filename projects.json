@@ -28,30 +28,30 @@
   },
   {
     "title": "Etch-a-Sketch",
-    "category": "odin",
+    "category": "the-odin-project",
     "description": "Interactive sketch pad with a great personality.",
     "tech": ["HTML", "CSS", "JS"],
     "image": "assets/etch-a-sketch.png",
-    "github": "https://github.com/Exc1D/odin-etch-a-sketch",
-    "demo": "https://exc1d.github.io/odin-etch-a-sketch/"
+    "github": "https://github.com/Exc1D/the-odin-project-etch-a-sketch",
+    "demo": "https://exc1d.github.io/the-odin-project-etch-a-sketch/"
   },
   {
     "title": "Almost Boring Calculator",
-    "category": "odin",
+    "category": "the-odin-project",
     "description": "Fully functional web calculator. Simple but beautiful.",
     "tech": ["HTML", "CSS", "JS"],
     "image": "assets/calculator.png",
-    "github": "https://github.com/Exc1D/odin-calculator",
-    "demo": "https://exc1d.github.io/odin-calculator/"
+    "github": "https://github.com/Exc1D/the-odin-project-calculator",
+    "demo": "https://exc1d.github.io/the-odin-project-calculator/"
   },
   {
     "title": "Kawaii Rock Paper Scissors",
-    "category": "odin",
+    "category": "the-odin-project",
     "description": "Web-based mini-game with dynamic scoring and intuitive sound fx.",
     "tech": ["HTML", "CSS", "JS"],
     "image": "assets/kawaii-rps.png",
-    "github": "https://github.com/Exc1D/odin-kawaii-rps",
-    "demo": "https://exc1d.github.io/odin-kawaii-rps/"
+    "github": "https://github.com/Exc1D/the-odin-project-kawaii-rps",
+    "demo": "https://exc1d.github.io/the-odin-project-kawaii-rps/"
   },
   {
     "title": "Oldagram",
